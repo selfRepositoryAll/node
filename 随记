@@ -25,3 +25,8 @@ worker.process.pid 一个进程是一个pid 默认的端口号是80
 
 const cluster = new EventEmitter(); // 哈哈没想到集群也是 EventEmitter的实例
 koa也是extends express也是 EventEmitter 是
+
+
+pm2有fork模式 他的fork模式是就是child_pROCESS中的spawn
+pm2中的cluster模式就是利用了cluster的中的fork模式，有负载均衡的功能，启动多个服务的概念
+cluster中的fork模式就是子进程中的fork模式 注意区分
