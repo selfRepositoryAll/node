@@ -1,0 +1,27 @@
+此随记是从node 基础模块一直到分析完成到express 和koa 成型
+对比分析研究
+集群: 首先是4核的， 通过cluster（集群）可以创建多个共享接口的进程
+进程是很多的
+四核八线程
+一个电脑是不是可以做集群（几个线程或者进程）
+饭店的例子  java开启多个线程
+如默认单进程单线程不能利用多核
+我是用集群这个模块肯定是为了可以使用多核服务器 那就是进程了 但毕竟是一台服务器，可以创建node服务器中间层服务器，node集群 是node服务器达到负载均衡，node服务层上面是nglix内部服务器，负载均衡
+
+
+多个端口监听一个应用 线程
+
+pid是一个进程是 多个端口
+
+
+
+spawn操作的是
+近日整理以前的node项目时发现一个文件同时声明了spawn和exec两种方法。最后只是用了spawn方法，所以查了一下这两者的区别。
+Nodejs基于事件驱动来处理并发，本身是单线程模式运行的。Nodejs通过使用child_process模块来生成多个子进程来处理其他事物。主要包括4个异步进程函数(spawn,exec,execFile,fork)和3个同步进程函数(spawnSync,execFileSync,execSync)。以异步函数中spawn是最基本的创建子进程的函数，其他三个异步函数都是对spawn不同程度的封装。spawn只能运行指定的程序，参数需要在列表中给出，而exec可以直接运行复杂的命令。
+比如要运行 du -sh /disk1 命令， 使用spawn函数需要写成spawn(‘du‘, [‘-sh ‘, ‘/disk1’])，而使用exec函数时，可以直接写成exec(‘du -sh /disk1’)。exec是会先进行Shell语法解析，因此用exec函数可以更方便的使用复杂的Shell命令，包括管道、重定向等。
+worker.process.pid 一个进程是一个pid 默认的端口号是80
+
+
+
+const cluster = new EventEmitter(); // 哈哈没想到集群也是 EventEmitter的实例
+koa也是extends express也是 EventEmitter 是
